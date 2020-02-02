@@ -1,0 +1,48 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Week3_FormCreation.Models.ContactUs
+@{
+    ViewData["Title"] = "Contact Us";
+}
+
+<div class="panel panel-primary">
+    <h1>@ViewData["Title"]</h1>
+    <div class="panel-body">
+        @if (Model != null)
+        {
+            <div class="alert alert-success" role="alert">
+                <b>Contact Form is Successfully Submitted!</b>
+            </div>
+        }
+        <fieldset>
+            @using (Html.BeginForm())
+            {
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.ContactName, "Name", new { @id = "ContactName" })
+                        @Html.TextBoxFor(model => model.ContactName, new { @class = "form-control", @placeholder = "Name" })
+                    </div>
+                    <div class="col">
+                        @Html.LabelFor(model => model.ContactEmail, "Email", new { @id = "ContactEmail" })
+                        @Html.TextBoxFor(model => model.ContactEmail, new { @class = "form-control", @placeholder = "Email", @type = "email" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        @Html.LabelFor(model => model.ContactSubject, "Subject", new { @id = "ContactSubject" })
+                        @Html.TextBoxFor(model => model.ContactSubject, new { @class = "form-control", @placeholder = "Subject" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        @Html.LabelFor(model => model.ContactMessage, "Message", new { @id = "ContactMessage" })
+                        @Html.TextAreaFor(model => model.ContactMessage, new { @class = "form-control", @placeholder = "Message", @type = "multiline" })
+                    </div>
+                </div>
+                <br />
+                <button type="submit" class="btn btn-primary">Send</button>
+            }
+        </fieldset>
+    </div>
+</div>
