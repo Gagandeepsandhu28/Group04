@@ -1,0 +1,33 @@
+﻿@model Week3_FormCreation.Models.Feedback
+@{
+    ViewData["Title"] = "Feedback";
+}
+
+<div class="panel panel-primary">
+    <h1>@ViewData["Title"]</h1>
+    <div class="panel-body">
+             <fieldset>
+            @using (Html.BeginForm())
+            {
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.FeedbackName, "Name", new { @id = "FeedbackName" })
+                        @Html.TextBoxFor(model => model.FeedbackName, new { @class = "form-control", @placeholder = "Name" })
+                    </div>
+                    <div class="col">
+                        @Html.LabelFor(model => model.FeedbackSubject, "Email", new { @id = "FeedbackSubject" })
+                        @Html.TextBoxFor(model => model.FeedbackSubject, new { @class = "form-control", @placeholder = "Subject"})
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        @Html.LabelFor(model => model.FeedbackMessage, "Subject", new { @id = "FeedbackMessage" })
+                        @Html.TextAreaFor(model => model.FeedbackMessage, new { @class = "form-control", @placeholder = "Message" })
+                    </div>
+                </div>
+                <br />
+                <button type="submit" class="btn btn-primary">Submit</button>
+            }
+        </fieldset>
+    </div>
+</div>
