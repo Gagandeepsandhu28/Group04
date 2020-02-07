@@ -30,3 +30,24 @@ This will make pizza buying experience cash free.
 	Reduce Paperwork- As most of the things will be performed online, it will reduce the usage of paper for the pizzeria. 
 
 
+5. PROJECT TEAM
+	The project team involves the below people and their roles and responsibilities:
+Sibtain: Roles and Responsibilities:
+	Requirement Gathering
+	Coding
+	Unit Testing
+	Defect fixing
+Gagandeep: Roles and responsibilities:
+	Reviewing the requirements
+	Test Planning.
+	Integration Testing
+	Automation and Regression Testing
+	Raising defects and retesting
+Pramod: Roles and Responsibilities:
+	Store and organize data
+	Capacity planning
+	Installation and configuration
+	Performance monitoring
+	Security
+	Backup and Recovery
+
