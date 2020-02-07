@@ -32,22 +32,22 @@ This will make pizza buying experience cash free.
 
 5. PROJECT TEAM
 	The project team involves the below people and their roles and responsibilities:
-Sibtain: Roles and Responsibilities:
-*	Requirement Gathering
-*	Coding
-*	Unit Testing
-*	Defect fixing
-Gagandeep: Roles and responsibilities:
-*	Reviewing the requirements
-*	Test Planning.
-*	Integration Testing
-*	Automation and Regression Testing
-*	Raising defects and retesting
-Pramod: Roles and Responsibilities:
-*	Store and organize data
-*	Capacity planning
-*	Installation and configuration
-*	Performance monitoring
-*	Security
-*	Backup and Recovery
+*Sibtain: Roles and Responsibilities:
+	* Requirement Gathering
+	* Coding
+	* Unit Testing
+	* Defect fixing
+*Gagandeep: Roles and responsibilities:
+	* Reviewing the requirements
+	* Test Planning.
+	* Integration Testing
+	* Automation and Regression Testing
+	* Raising defects and retesting
+*Pramod: Roles and Responsibilities:
+	* Store and organize data
+	* Capacity planning
+	* Installation and configuration
+	* Performance monitoring
+	* Security
+	* Backup and Recovery
 
