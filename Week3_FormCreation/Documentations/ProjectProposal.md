@@ -31,7 +31,7 @@ This will make pizza buying experience cash free.
 
 
 5. PROJECT TEAM
-	The project team involves the below people and their roles and responsibilities:
+The project team involves the below people and their roles and responsibilities:
 *Sibtain: Roles and Responsibilities:
 	* Requirement Gathering
 	* Coding
