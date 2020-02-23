@@ -5,13 +5,26 @@ using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Week3_FormCreation.Models;
+using DAL;
+using DataModels;
+using Library.BusinessLogic;
+using System.Configuration;
+using Microsoft.Extensions.Configuration;
+
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Week3_FormCreation.Controllers
 {
+
     public class ContactUsController : Controller
     {
+        private IConfiguration _configuration;
+
+        public ContactUsController(IConfiguration Configuration)
+        {
+            _configuration = Configuration;
+        }
+
         // GET: /<controller>/
         [HttpGet]
         public IActionResult Index()
@@ -32,6 +45,10 @@ namespace Week3_FormCreation.Controllers
                 {
                     return View();
                 }
+
+                // ADD THE CONTACT CONTENT TO DB...
+                ContactUsHandler handler = new ContactUsHandler(_configuration);
+                var newcontactus = handler.AddContact(contact);
 
                 // SERVER COPY EMAIL
                 var contact_mail = new MailMessage();
@@ -62,11 +79,19 @@ namespace Week3_FormCreation.Controllers
                     smtp.EnableSsl = true;
                     await smtp.SendMailAsync(contact_mail);
                     await smtp.SendMailAsync(auto_mail);
-                    return View(contact);
+                    return RedirectToAction("Listing");
                 }
                 
             }
-                     return View(contact);
+            return RedirectToAction("Listing");
+        }
+
+        public IActionResult Listing()
+        {
+            ContactUsHandler handler = new ContactUsHandler(_configuration);
+            var contacts = handler.GetAllContactUs();
+            return View(contacts);
         }
     }
+   
 }

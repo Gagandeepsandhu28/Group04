@@ -1,0 +1,48 @@
+﻿@model IEnumerable<DataModels.ContactUs>
+
+@{
+    ViewData["Title"] = "Listing Contact Us";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Contact Us Listings</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactSubject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactMessage)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactSubject)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactEmail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactMessage)
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
