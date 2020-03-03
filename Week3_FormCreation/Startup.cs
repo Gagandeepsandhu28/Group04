@@ -38,6 +38,8 @@ namespace Week3_FormCreation
             }
             app.UseStaticFiles();
 
+            app.UseAuthentication();
+
             app.UseRouting();
 
             app.UseAuthorization();
@@ -47,6 +49,8 @@ namespace Week3_FormCreation
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
+
             });
         }
     }
