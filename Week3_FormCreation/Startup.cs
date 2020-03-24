@@ -28,6 +28,8 @@ namespace Week3_FormCreation
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            //Register Syncfusion license
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MjI2MzE0QDMxMzcyZTM0MmUzMFNRUkRDRnRRYzVMblVRL2lVZjlCQ09NMGV5YVFjN3BFUnJaZHQ0K3YvMHc9");
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

@@ -25,6 +25,8 @@ namespace Week3_FormCreation.Controllers
 
         public IActionResult Privacy()
         {
+            ViewBag.minDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 05);
+            ViewBag.maxDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 27);
             return View();
         }
         public IActionResult AboutUs()

@@ -1,6 +1,17 @@
-﻿@{
+﻿@using Syncfusion.EJ2
+@{
     ViewData["Title"] = "Privacy Policy";
 }
 <h1>@ViewData["Title"]</h1>
+
+    <div>
+        <ejs-datepicker id="datepicker" value="@ViewBag.value" min="@ViewBag.minDate" max="@ViewBag.maxDate"></ejs-datepicker>
+    </div>
+
+
+    <div>
+        <ejs-calendar id="calendar"></ejs-calendar>
+        
+    </div>
 
 <p>Use this page to detail your site's privacy policy.</p>
