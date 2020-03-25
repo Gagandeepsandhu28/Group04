@@ -4,7 +4,7 @@
 @model Week3_FormCreation.Models.AdminLogin
 @{
     ViewData["Title"] = "Administration Login";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    Layout = "~/Views/Shared/_LayoutAdminLogin.cshtml";
 }
 
 <div class="panel panel-primary">
@@ -14,8 +14,8 @@
         @if (Model != null)
         {
             
-            <div class="alert alert-success" role="alert">
-                <b>Login ID:@Model.adminLoginId <br />PWD:@Model.adminLoginPwd<br />SALT:@Model.adminLoginSalt<br />HASH:@Model.adminLoginHash</b>
+            <div class="alert alert-dark" role="alert">
+                <b>@Model.adminMsg</b>
             </div>
 
 

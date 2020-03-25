@@ -12,5 +12,7 @@ namespace Week3_FormCreation.Models
 
         public string adminLoginHash { get; set; }
         public string adminLoginSalt { get; set; }
+        public string adminMsg { get; set; }
+
     }
 }
