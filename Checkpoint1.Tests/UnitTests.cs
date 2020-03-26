@@ -39,9 +39,9 @@ namespace Checkpoint1.Tests
         {
             //Arrange
             string expected_result = "True";
-            string pwd_hash = "Bygan3Pe4mlnH5lG0ZdvzpFY/ouODmMQG+iOg2WoJCYLgsIoXUC2tUrTQKXAY3A3ssgR+3n7Jplwa6vGv+omnhgiZJr4Be9mEwVAYr5IyWxYz0Oy+Z+lagtyql+QethJSo3ziKDDflv7dcleF85Hl1ZXdswZnT+FcP1wPL+onXGBujFl6egCAXgKJox4/iK9sk2kAs9NDhiTwbNiAOBl9lmvQv+UCbizfPTWQWkfVkRQyY8B2OpexaTt1jkCLwZkh/0JcZ/pa4tX/iDZA8RBjk6/RQcFQ74wwlitWhM+X9yJolBQ6qX8/s3OQaEyU0cOtfS5TkyOVLaRY16sRt/x4ZA==";
+            string pwd_hash = "ygan3Pe4mlnH5lG0ZdvzpFY/ouODmMQG+iOg2WoJCYLgsIoXUC2tUrTQKXAY3A3ssgR+3n7Jplwa6vGv+omnhgiZJr4Be9mEwVAYr5IyWxYz0Oy+Z+lagtyql+QethJSo3ziKDDflv7dcleF85Hl1ZXdswZnT+FcP1wPL+onXGBujFl6egCAXgKJox4/iK9sk2kAs9NDhiTwbNiAOBl9lmvQv+UCbizfPTWQWkfVkRQyY8B2OpexaTt1jkCLwZkh/0JcZ/pa4tX/iDZA8RBjk6/RQcFQ74wwlitWhM+X9yJolBQ6qX8/s3OQaEyU0cOtfS5TkyOVLaRY16sRt/x4ZA==";
             string pwd_salt = "toPA/PERLRiLzaTUppBPE5OrFf3StjN99xo9N49h7mGXQFVZXoljBruO2Emt2kJy0EOWMIy2671g5FAfS/X5Kg==";
-            string pwd = "pass@1234";
+            string pwd = "pass@12345";
 
 
             //Act
