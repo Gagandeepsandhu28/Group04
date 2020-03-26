@@ -55,7 +55,7 @@ namespace Checkpoint1.Tests
         }
 
         [Fact]
-        public void CheckValidPassword_DbLoginChkReturnsboolTrue()
+        public void CheckValidPassword_DbCheckLoginReturnsboolTrue()
         {
             //Arrange
             string expected_result = "True";
@@ -72,6 +72,26 @@ namespace Checkpoint1.Tests
 
 
         }
+
+        [Fact]
+        public void CheckInValidPassword_DbCheckloginReturnsboolTrue()
+        {
+            //Arrange
+            string expected_result = "True";
+            AdminLogin login = new AdminLogin();
+            login.adminLoginId = "admin";
+            login.adminLoginPwd = "pass@12345";
+
+            //Act
+            bool actual_result = login.CheckLogin(login);
+
+            //Assert
+            Assert.NotEqual(expected_result.ToString(), actual_result.ToString());
+
+
+
+        }
+
     }
 
 }
