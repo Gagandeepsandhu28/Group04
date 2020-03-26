@@ -12,10 +12,10 @@ namespace Checkpoint1.Tests
     public class UnitTests
     {
         private IConfiguration _configuration;
-       
+
         // TEST ChekLogin_Hash Alogrithm (Verifiying User Password)
         [Fact]
-        public void CheckLogin_HashAlgorithmReturnsboolTrue()
+        public void CheckValidPassword_HashAlgorithmReturnsboolTrue()
         {
             //Arrange
             string expected_result = "True";
@@ -29,18 +29,30 @@ namespace Checkpoint1.Tests
 
             //Assert
             Assert.Equal(expected_result.ToString(), actual_result.ToString());
-            
+
         }
 
-   
+
 
         [Fact]
-        public void Test2()
+        public void CheckInvalidPassword_HashAlgorithmReturnsboolTrue()
         {
-            Assert.True(true);
+            //Arrange
+            string expected_result = "True";
+            string pwd_hash = "Bygan3Pe4mlnH5lG0ZdvzpFY/ouODmMQG+iOg2WoJCYLgsIoXUC2tUrTQKXAY3A3ssgR+3n7Jplwa6vGv+omnhgiZJr4Be9mEwVAYr5IyWxYz0Oy+Z+lagtyql+QethJSo3ziKDDflv7dcleF85Hl1ZXdswZnT+FcP1wPL+onXGBujFl6egCAXgKJox4/iK9sk2kAs9NDhiTwbNiAOBl9lmvQv+UCbizfPTWQWkfVkRQyY8B2OpexaTt1jkCLwZkh/0JcZ/pa4tX/iDZA8RBjk6/RQcFQ74wwlitWhM+X9yJolBQ6qX8/s3OQaEyU0cOtfS5TkyOVLaRY16sRt/x4ZA==";
+            string pwd_salt = "toPA/PERLRiLzaTUppBPE5OrFf3StjN99xo9N49h7mGXQFVZXoljBruO2Emt2kJy0EOWMIy2671g5FAfS/X5Kg==";
+            string pwd = "pass@1234";
+
+
+            //Act
+            bool actual_result = HashSalt.VerifyPassword(pwd, pwd_hash, pwd_salt);
+
+            //Assert
+            Assert.NotEqual(expected_result.ToString(), actual_result.ToString());
+
+
+
         }
-
-
-
     }
+
 }
