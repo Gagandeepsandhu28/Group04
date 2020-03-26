@@ -9,7 +9,7 @@ using Library.BusinessLogic;
 using System.Configuration;
 using Microsoft.Extensions.Configuration;
 using Week3_FormCreation.Models;
-using AdminLogin = Week3_FormCreation.Models.AdminLogin;
+
 using Microsoft.AspNetCore.Http;
 
 namespace Week3_FormCreation.Controllers
@@ -21,7 +21,6 @@ namespace Week3_FormCreation.Controllers
         {
             _configuration = Configuration;
         }
-
         public IActionResult AdminControlPanel()
         {
             // CHECK LOGIN SESSION!
@@ -110,7 +109,9 @@ namespace Week3_FormCreation.Controllers
                 }
                 // CHK DB TO GET ADMIN STORED PWD SALT AND HASH & LOGIN ID
                 // CHK LOGIN
-                bool chk_login_result = CheckLogin(adminlogin);
+                AdminLogin login = new AdminLogin(_configuration);
+                
+                bool chk_login_result = login.CheckLogin(adminlogin);
                 
                 if(chk_login_result)
                 {
@@ -129,34 +130,6 @@ namespace Week3_FormCreation.Controllers
              return View(adminlogin);           
         }
 
-        public bool CheckLogin(AdminLogin adminlogin)
-        {
-            /*  HashSalt saltedhash =  HashSalt.GenerateSaltedHash(64,adminlogin.adminLoginPwd);
-                 adminlogin.adminLoginSalt = saltedhash.Salt;
-                 adminlogin.adminLoginHash = saltedhash.Hash; */
-
-            bool result = false;
-            AdminLoginHandler handler = new AdminLoginHandler(_configuration);
-            var adminlogin_var = handler.GetLoginId();
-            //return View(contacts);
-            // CHECK LOGIN
-            if (adminlogin.adminLoginId.ToString().Equals(adminlogin_var.Config_UserId.ToString()))
-            {
-                string stored_hash = adminlogin_var.Config_Pwd_Hash.ToString();
-                string stored_salt = adminlogin_var.Config_Pwd_Salt.ToString();
-                string stored_pwd = adminlogin.adminLoginPwd;
-                bool pwd_verify = HashSalt.VerifyPassword(stored_pwd, stored_hash, stored_salt);
-                if (pwd_verify)
-                {
-                    // Result -> TRUE
-                    result = true;
-                   // adminlogin.adminLoginSalt = "Password Verified";
-                }
-            }
-
-
-            return result;
-        }
     }
     
 }

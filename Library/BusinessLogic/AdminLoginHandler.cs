@@ -16,7 +16,7 @@ namespace Library.BusinessLogic
         {
             _configuration = Configuration;
         }
-        public AdminLogin GetLoginId()
+        public AdminLoginDb GetLoginId()
         {
             DataAccess db = new DataAccess(_configuration);
             var adminlogin = db.GetLoginId();

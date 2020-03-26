@@ -22,11 +22,11 @@ namespace DAL
             _configuration = Configuration;
         }
 
-        public AdminLogin GetLoginId()
+        public AdminLoginDb GetLoginId()
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.BlogConnectionStringValue(_configuration, ConnectionStringName)))
             {
-                AdminLogin adminlogin = connection.QueryFirst<AdminLogin>("select * from admin_config WHERE config_id = 1");
+                AdminLoginDb adminlogin = connection.QueryFirst<AdminLoginDb>("select * from admin_config WHERE config_id = 1");
 
                 return adminlogin;
             }
