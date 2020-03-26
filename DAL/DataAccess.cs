@@ -6,6 +6,7 @@ using System.Text;
 using DataModels;
 using Dapper;
 using System.Linq;
+using System.Data.SqlClient;
 
 namespace DAL
 {
@@ -22,9 +23,17 @@ namespace DAL
             _configuration = Configuration;
         }
 
-        public AdminLoginDb GetLoginId()
+        private const string ConnectionString = @"Data Source=dbfoodgroup4.cghbrgsd5ghi.ca-central-1.rds.amazonaws.com;Initial Catalog=Week6DB;User ID=dba;Password=$week6Dbfood;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+
+        private SqlConnection ConnectToDatabase()
         {
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.BlogConnectionStringValue(_configuration, ConnectionStringName)))
+            var conn = new SqlConnection(ConnectionString);
+            conn.Open();
+            return conn;
+        }
+            public AdminLoginDb GetLoginId()
+        {
+            using (IDbConnection connection = ConnectToDatabase())
             {
                 AdminLoginDb adminlogin = connection.QueryFirst<AdminLoginDb>("select * from admin_config WHERE config_id = 1");
 

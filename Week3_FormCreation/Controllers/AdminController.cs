@@ -16,11 +16,7 @@ namespace Week3_FormCreation.Controllers
 {
     public class AdminController : Controller
     {
-        private IConfiguration _configuration;
-        public AdminController(IConfiguration Configuration)
-        {
-            _configuration = Configuration;
-        }
+        
         public IActionResult AdminControlPanel()
         {
             // CHECK LOGIN SESSION!
@@ -109,7 +105,7 @@ namespace Week3_FormCreation.Controllers
                 }
                 // CHK DB TO GET ADMIN STORED PWD SALT AND HASH & LOGIN ID
                 // CHK LOGIN
-                AdminLogin login = new AdminLogin(_configuration);
+                AdminLogin login = new AdminLogin();
                 
                 bool chk_login_result = login.CheckLogin(adminlogin);
                 
