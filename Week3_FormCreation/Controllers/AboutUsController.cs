@@ -16,8 +16,8 @@ namespace Week3_FormCreation.Controllers
         {
             AboutUs aboutUs = new AboutUs
             {
-                Title = "Make My Food",
-            Body = "Make My Food opened its doors with one goal in mind: Better Pizza." +
+                Title = "Pizza dots",
+            Body = "Pizza dots opened its doors with one goal in mind: Better Pizza." +
             " We knew that with best ingredients we would create better pizzas. That goal and the promise of " +
             "best ingredients, better pizza remain true always."
         };

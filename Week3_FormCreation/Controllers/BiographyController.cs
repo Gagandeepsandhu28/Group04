@@ -42,7 +42,7 @@ namespace Week3_FormCreation.Controllers
             bio.BioTitle = "Biography: Sibtain";
             bio.BioBody = "<p>I am student at Conestoga College and working part time at Christie Digital as a cleaning staff member as I have done Master&rsquo;s Degree in Computer Application and also completed Post Graduation in Project Management and currently pursing Software Quality Assurance from Conestoga College, ON Canada.</p>";
             return View(bio);
-            return View();
+            
         }
     }
 }
