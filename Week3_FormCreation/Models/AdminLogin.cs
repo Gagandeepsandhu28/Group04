@@ -29,12 +29,9 @@ namespace Week3_FormCreation.Models
 
         public bool CheckLogin(AdminLogin adminlogin)
         {
-            /*  HashSalt saltedhash =  HashSalt.GenerateSaltedHash(64,adminlogin.adminLoginPwd);
-                 adminlogin.adminLoginSalt = saltedhash.Salt;
-                 adminlogin.adminLoginHash = saltedhash.Hash; */
-
+            
             bool result = false;
-            AdminLoginHandler handler = new AdminLoginHandler(_configuration);
+            AdminLoginHandler handler = new AdminLoginHandler();
             var adminlogin_var = handler.GetLoginId();
             //return View(contacts);
             // CHECK LOGIN

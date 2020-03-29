@@ -11,14 +11,9 @@ namespace Library.BusinessLogic
     public class AdminLoginHandler
     {
         private IConfiguration _configuration;
-        public AdminLoginHandler() { }
-        public AdminLoginHandler(IConfiguration Configuration)
+         public AdminLoginDb GetLoginId()
         {
-            _configuration = Configuration;
-        }
-        public AdminLoginDb GetLoginId()
-        {
-            DataAccess db = new DataAccess(_configuration);
+            DataAccess db = new DataAccess();
             var adminlogin = db.GetLoginId();
             return adminlogin;
         }        

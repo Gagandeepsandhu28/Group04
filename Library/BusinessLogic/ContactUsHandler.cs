@@ -10,21 +10,16 @@ namespace Library.BusinessLogic
 {
     public class ContactUsHandler
     {
-        private IConfiguration _configuration;
         public ContactUsHandler() { }
-        public ContactUsHandler(IConfiguration Configuration)
-        {
-            _configuration = Configuration;
-        }
         public ContactUs[] GetAllContactUs()
         {
-            DataAccess db = new DataAccess(_configuration);
+            DataAccess db = new DataAccess();
             var contactus = db.GetAllContactUsFromDatabase();
             return contactus;
         }
         public object AddContact(ContactUs contactus)
         {
-            DataAccess db = new DataAccess(_configuration);
+            DataAccess db = new DataAccess();
             var contacts = db.AddContactUsToDatabase(contactus);
             return contacts;
         }
