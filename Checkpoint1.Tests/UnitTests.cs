@@ -91,7 +91,42 @@ namespace Checkpoint1.Tests
 
 
         }
+        [Fact]
+        public void CheckPasswordStrengthMatch_MatchReturnsboolTrue()
+        {
+            //Arrange
+            string expected_result = "True";
+           
+            DeliveryRegister useradd = new DeliveryRegister();
+            useradd.deliveryRegisterLoginPwdFirst = "@Rotpolx12";
+            useradd.deliveryRegisterLoginPwdRepeat = "@Rotpolx12";
 
+            //Act
+            bool actual_result = useradd.CheckPasswordStrengthMatch(useradd.deliveryRegisterLoginPwdFirst,useradd.deliveryRegisterLoginPwdRepeat);
+
+            //Assert
+            Assert.Equal(expected_result.ToString(), actual_result.ToString());
+            
+        }
+
+        [Fact]
+        public void CheckPLoginIdExists_UserIdReturnsboolFalse()
+        {
+            //Arrange
+            string expected_result = "False";
+
+            DataModels.DeliveryRegister useradd = new DataModels.DeliveryRegister();
+            useradd.Delivery_Login_Id="sjagani3229@conestogac.on.ca";
+
+            DeliveryRegister dl_user = new DeliveryRegister();
+            
+            //Act
+            bool actual_result = dl_user.CheckLoginIdExists(useradd);
+
+            //Assert
+            Assert.Equal(expected_result.ToString(), actual_result.ToString());
+
+        }
     }
 
 }

@@ -81,13 +81,11 @@ namespace Week3_FormCreation.Controllers
 
                 deliveryregister.deliveryRegisterMsg = "User Added Succesfully! Please Login";
                 
-                // GENERATE THE PROVINCE LIST BEFORE RETURNING MODEL
-
+            
 
                 return View(deliveryregister);
             }
-            // GENERATE THE PROVINCE LIST BEFORE RETURNING MODEL
-           
+            
             return View(deliveryregister);
         }
     }
