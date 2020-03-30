@@ -242,6 +242,82 @@ namespace Checkpoint1.Tests
 
         }
 
+        // TEST CheckPasswordStrenghtMatch - Test with NoMatching PWD
+        [Fact]
+        public void CheckPasswordStrengthMatch_MatchReturnsboolFalse()
+        {
+            //Arrange
+            string expected_result = "True";
+
+            DeliveryRegister useradd = new DeliveryRegister();
+            useradd.deliveryRegisterLoginPwdFirst = "@Rotpolx12";
+            useradd.deliveryRegisterLoginPwdRepeat = "@Rotpolx123";
+
+            //Act
+            bool actual_result = useradd.CheckPasswordStrengthMatch(useradd.deliveryRegisterLoginPwdFirst, useradd.deliveryRegisterLoginPwdRepeat);
+
+            //Assert
+            Assert.NotEqual(expected_result.ToString(), actual_result.ToString());
+
+        }
+        // TEST Without Symbol In Password//
+        [Fact]
+        public void CheckPasswordStrengthMatchWithoutSymbol_MatchReturnsboolTrue()
+        {
+            //Arrange
+            string expected_result = "True";
+
+            DeliveryRegister useradd = new DeliveryRegister();
+            useradd.deliveryRegisterLoginPwdFirst = "Rotpolx123";
+            useradd.deliveryRegisterLoginPwdRepeat = "Rotpolx123";
+
+            //Act
+            bool actual_result = useradd.CheckPasswordStrengthMatch(useradd.deliveryRegisterLoginPwdFirst, useradd.deliveryRegisterLoginPwdRepeat);
+
+            //Assert
+            Assert.NotEqual(expected_result.ToString(), actual_result.ToString());
+
+        }
+        // TEST Without Number In Password//
+        [Fact]
+        public void CheckPasswordStrengthMatchWithoutNumber_MatchReturnsboolTrue()
+        {
+            //Arrange
+            string expected_result = "True";
+
+            DeliveryRegister useradd = new DeliveryRegister();
+            useradd.deliveryRegisterLoginPwdFirst = "Rotpolxabc";
+            useradd.deliveryRegisterLoginPwdRepeat = "Rotpolxabc";
+
+            //Act
+            bool actual_result = useradd.CheckPasswordStrengthMatch(useradd.deliveryRegisterLoginPwdFirst, useradd.deliveryRegisterLoginPwdRepeat);
+
+            //Assert
+            Assert.NotEqual(expected_result.ToString(), actual_result.ToString());
+
+        }
+        // TEST With Less Than Eight Characters In Password//
+        [Fact]
+        public void CheckPasswordStrengthMatchWithLessThanEightCharacters_MatchReturnsboolTrue()
+        {
+            //Arrange
+            string expected_result = "True";
+
+            DeliveryRegister useradd = new DeliveryRegister();
+            useradd.deliveryRegisterLoginPwdFirst = "Rot23";
+            useradd.deliveryRegisterLoginPwdRepeat = "Rot23";
+
+            //Act
+            bool actual_result = useradd.CheckPasswordStrengthMatch(useradd.deliveryRegisterLoginPwdFirst, useradd.deliveryRegisterLoginPwdRepeat);
+
+            //Assert
+            Assert.NotEqual(expected_result.ToString(), actual_result.ToString());
+
+        }
+
+
+
+
 
     }
 
