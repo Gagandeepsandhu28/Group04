@@ -262,7 +262,7 @@ namespace Checkpoint1.Tests
         }
         // TEST Without Symbol In Password//
         [Fact]
-        public void CheckPasswordStrengthMatchWithoutSymbol_MatchReturnsboolTrue()
+        public void CheckPasswordStrengthMatchWithoutSymbol_MatchReturnsboolFalse()
         {
             //Arrange
             string expected_result = "True";
@@ -280,7 +280,7 @@ namespace Checkpoint1.Tests
         }
         // TEST Without Number In Password//
         [Fact]
-        public void CheckPasswordStrengthMatchWithoutNumber_MatchReturnsboolTrue()
+        public void CheckPasswordStrengthMatchWithoutNumber_MatchReturnsboolFalse()
         {
             //Arrange
             string expected_result = "True";
@@ -298,7 +298,7 @@ namespace Checkpoint1.Tests
         }
         // TEST With Less Than Eight Characters In Password//
         [Fact]
-        public void CheckPasswordStrengthMatchWithLessThanEightCharacters_MatchReturnsboolTrue()
+        public void CheckPasswordStrengthMatchWithLessThanEightCharacters_MatchReturnsboolFalse()
         {
             //Arrange
             string expected_result = "True";
@@ -306,6 +306,24 @@ namespace Checkpoint1.Tests
             DeliveryRegister useradd = new DeliveryRegister();
             useradd.deliveryRegisterLoginPwdFirst = "Rot23";
             useradd.deliveryRegisterLoginPwdRepeat = "Rot23";
+
+            //Act
+            bool actual_result = useradd.CheckPasswordStrengthMatch(useradd.deliveryRegisterLoginPwdFirst, useradd.deliveryRegisterLoginPwdRepeat);
+
+            //Assert
+            Assert.NotEqual(expected_result.ToString(), actual_result.ToString());
+
+        }
+        //Test with all Uppercase Characters in Password
+        [Fact]
+        public void CheckPasswordStrengthMatchWithAllUpperCaseCharacters_MatchReturnsboolFalse()
+        {
+            //Arrange
+            string expected_result = "True";
+
+            DeliveryRegister useradd = new DeliveryRegister();
+            useradd.deliveryRegisterLoginPwdFirst = "BUCK$2255";
+            useradd.deliveryRegisterLoginPwdRepeat = "BUCK$2255";
 
             //Act
             bool actual_result = useradd.CheckPasswordStrengthMatch(useradd.deliveryRegisterLoginPwdFirst, useradd.deliveryRegisterLoginPwdRepeat);
