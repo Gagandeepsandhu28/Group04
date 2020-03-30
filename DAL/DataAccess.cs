@@ -64,6 +64,17 @@ namespace DAL
             }
         }
 
+        public DeliveryLoginDb GetDeliveryLogin(DeliveryLoginDb dblogindetails)
+        {
+            using (IDbConnection connection = ConnectToDatabase())
+            {
+                DeliveryLoginDb deliverylogin = connection.QueryFirst<DeliveryLoginDb>("select * from delivery_register WHERE [delivery_login_id] = '"+ dblogindetails.Delivery_Login_Id+"'");
+
+                return deliverylogin;
+            }
+        }
+
+
         public ContactUs[] GetAllContactUsFromDatabase()
         {
             using (IDbConnection connection = ConnectToDatabase())

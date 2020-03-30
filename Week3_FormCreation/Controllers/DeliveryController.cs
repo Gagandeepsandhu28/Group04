@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Library.BusinessLogic;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Week3_FormCreation.Models;
@@ -11,9 +12,108 @@ namespace Week3_FormCreation.Controllers
 {
     public class DeliveryController : Controller
     {
+        public IActionResult DeliveryUserPanel()
+        {
+            // CHECK LOGIN SESSION!
+            var var_chk_session = HttpContext.Session.GetString("DeliveryLogin");
+            if (var_chk_session is null)
+            {
+                return RedirectToAction("Index");
+
+            }
+            else
+            {
+                if (var_chk_session.ToString().Equals("true"))
+                {
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
+
+            }
+
+        }
+        public IActionResult SignOut()
+        {
+            // CHECK LOGIN SESSION!
+            var var_chk_session = HttpContext.Session.GetString("DeliveryLogin");
+            if (var_chk_session is null)
+            {
+                return RedirectToAction("Index");
+
+            }
+            else
+            {
+                if (var_chk_session.ToString().Equals("true"))
+                {
+                    HttpContext.Session.SetString("DeliveryLogin", "false");
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+
+        }
         public IActionResult Index()
         {
-            return View();
+            // CHECK LOGIN SESSION!
+            var var_chk_session = HttpContext.Session.GetString("DeliveryLogin");
+            if (var_chk_session is null)
+            {
+                return View();
+
+            }
+            else
+            {
+                if (var_chk_session.ToString().Equals("true"))
+                {
+                    return RedirectToAction("DeliveryUserPanel");
+                }
+                else
+                {
+                    return View();
+                }
+
+            }
+
+        }
+
+        [HttpPost]
+        public IActionResult Index(DeliveryLogin deliverylogin)
+        {
+
+            // Create A Has Password in DB
+            if (ModelState.IsValid)
+            {
+                if (deliverylogin.deliveryLoginId == null || deliverylogin.deliveryLoginPwd == null)
+                {
+                    return View(deliverylogin);
+                }
+                // CHK DB TO GET DELIVERY STORED PWD SALT AND HASH & LOGIN ID
+                // CHK LOGIN
+                DeliveryLogin login = new DeliveryLogin();
+
+                bool chk_login_result = login.CheckLogin(deliverylogin);
+
+                if (chk_login_result)
+                {
+                    HttpContext.Session.SetString("DeliveryLogin", "true");
+                    deliverylogin.deliveryMsg = "Login Succesful!";
+                    return RedirectToAction("DeliveryUserPanel");
+                }
+                else
+                {
+                    deliverylogin.deliveryMsg = "Invalid User Name or Pwd?";
+                    return View(deliverylogin);
+
+                }
+
+            }
+            return View(deliverylogin);
         }
 
         public IActionResult Register()

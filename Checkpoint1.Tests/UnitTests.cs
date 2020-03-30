@@ -34,7 +34,7 @@ namespace Checkpoint1.Tests
         }
 
 
-
+        // TEST ChekLogin_Hash Alogrithm (Verifiying User InvalidPassword)
         [Fact]
         public void CheckInvalidPassword_HashAlgorithmReturnsboolTrue()
         {
@@ -55,6 +55,46 @@ namespace Checkpoint1.Tests
 
         }
 
+        // TEST Database Delivery CheckLogin - Test with Correct Credentials
+        [Fact]
+        public void DeliveryCheckValidPassword_DbCheckLoginReturnsboolTrue()
+        {
+            //Arrange
+            string expected_result = "True";
+            DeliveryLogin login = new DeliveryLogin();
+            login.deliveryLoginId = "sibtain.bca@gmail.com";
+            login.deliveryLoginPwd = "Buck$2255";
+
+            //Act
+            bool actual_result = login.CheckLogin(login);
+
+            //Assert
+            Assert.Equal(expected_result.ToString(), actual_result.ToString());
+
+
+
+        }
+        // TEST Database Delivery CheckLogin - Test with Invalid Credentials
+        [Fact]
+        public void DeliveryCheckValidPassword_DbCheckLoginReturnsboolFalse()
+        {
+            //Arrange
+            string expected_result = "False";
+            DeliveryLogin login = new DeliveryLogin();
+            login.deliveryLoginId = "sibtain.bca@gmail.com";
+            login.deliveryLoginPwd = "Buck2255";
+
+            //Act
+            bool actual_result = login.CheckLogin(login);
+
+            //Assert
+            Assert.Equal(expected_result.ToString(), actual_result.ToString());
+
+
+
+        }
+
+        // TEST Database Admin CheckLogin - Test with Correct Credentials
         [Fact]
         public void CheckValidPassword_DbCheckLoginReturnsboolTrue()
         {
@@ -74,6 +114,7 @@ namespace Checkpoint1.Tests
 
         }
 
+        // TEST Database Admin CheckLogin - Test with Invalid Credentials
         [Fact]
         public void CheckInValidPassword_DbCheckloginReturnsboolTrue()
         {
@@ -92,6 +133,7 @@ namespace Checkpoint1.Tests
 
 
         }
+        // TEST CheckPasswordStrenghtMatch - Test with Matching PWD
         [Fact]
         public void CheckPasswordStrengthMatch_MatchReturnsboolTrue()
         {
@@ -110,6 +152,7 @@ namespace Checkpoint1.Tests
             
         }
 
+        // TEST CheckPasswordStrenghtMatch - Test with Without Capital Letter in pwd
         [Fact]
         public void CheckPasswordStrengthMatch_NoCapitalReturnsboolFalse()
         {
@@ -128,8 +171,9 @@ namespace Checkpoint1.Tests
 
         }
 
+        // TEST CheckDeliveryLoginIdExists in DB - Test with Username Which Doesnot Exists
         [Fact]
-        public void CheckPLoginIdExists_UserIdReturnsboolFalse()
+        public void CheckDeliveryLoginIdExists_UserIdReturnsboolFalse()
         {
             //Arrange
             string expected_result = "False";
@@ -147,6 +191,7 @@ namespace Checkpoint1.Tests
 
         }
 
+        // TEST CheckDeliveryLoginIdExists in DB - Test with Username Exists
         [Fact]
         public void CheckPLoginIdExists_UserIdReturnsboolTrue()
         {
@@ -166,6 +211,7 @@ namespace Checkpoint1.Tests
 
         }
 
+        // CHECK DeliveryUser Data is saved in DB.
         [Fact]
         public void DeliveryUserAdd_UserDetailsReturnsInserted()
         {
@@ -195,6 +241,8 @@ namespace Checkpoint1.Tests
             Assert.Equal(expected_result.ToString(), actual_result.ToString());
 
         }
+
+
     }
 
 }

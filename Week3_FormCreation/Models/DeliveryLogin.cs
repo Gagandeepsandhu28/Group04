@@ -19,19 +19,23 @@ namespace Week3_FormCreation.Models
         public string deliveryLoginSalt { get; set; }
         public string deliveryMsg { get; set; }
 
-      /*  public bool CheckLogin(AdminLogin adminlogin)
+        public bool CheckLogin(DeliveryLogin deliverylogin)
         {
 
             bool result = false;
+            DataModels.DeliveryLoginDb dbdeliverylogin = new DataModels.DeliveryLoginDb();
+            dbdeliverylogin.Delivery_Login_Id = deliverylogin.deliveryLoginId;
+            
+
             DeliveryLoginHandler handler = new DeliveryLoginHandler();
-            var adminlogin_var = handler.GetLoginId();
+            var deliverylogin_var = handler.GetDeliveryLoginId(dbdeliverylogin);
             //return View(contacts);
             // CHECK LOGIN
-            if (adminlogin.adminLoginId.ToString().Equals(adminlogin_var.Config_UserId.ToString()))
+            if (deliverylogin.deliveryLoginId.ToString().Equals(deliverylogin_var.Delivery_Login_Id.ToString()))
             {
-                string stored_hash = adminlogin_var.Config_Pwd_Hash.ToString();
-                string stored_salt = adminlogin_var.Config_Pwd_Salt.ToString();
-                string stored_pwd = adminlogin.adminLoginPwd;
+                string stored_hash = deliverylogin_var.Delivery_Pwd_Hash.ToString();
+                string stored_salt = deliverylogin_var.Delivery_Pwd_Salt.ToString();
+                string stored_pwd = deliverylogin.deliveryLoginPwd;
                 bool pwd_verify = HashSalt.VerifyPassword(stored_pwd, stored_hash, stored_salt);
                 if (pwd_verify)
                 {
@@ -43,6 +47,6 @@ namespace Week3_FormCreation.Models
 
 
             return result;
-        } */
+        }
     }
 }

@@ -8,11 +8,11 @@ namespace Library.BusinessLogic
 {
     public class DeliveryLoginHandler
     {
-        public DeliveryLoginDb GetLoginId(DeliveryLoginDb login)
+        public DeliveryLoginDb GetDeliveryLoginId(DeliveryLoginDb login)
         {
             DataAccess db = new DataAccess();
-         //   var adminlogin = ();
-            return login;
+            var deliverylogin = db.GetDeliveryLogin(login);
+            return deliverylogin;
         }
     }
 }
