@@ -32,7 +32,29 @@ namespace DAL
             conn.Open();
             return conn;
         }
-            public AdminLoginDb GetLoginId()
+
+        public DeliveryRegister[] CheckDeliveryRegisterLoginAvailable(DeliveryRegister deliveryregister)
+        {
+            using (IDbConnection connection = ConnectToDatabase())
+            {
+                DeliveryRegister[] deliveryloginavail = connection.Query<DeliveryRegister>("select * from delivery_register WHERE delivery_login_id='"+deliveryregister.Delivery_Login_Id+"'").ToArray();
+
+                return deliveryloginavail;
+            }
+        }
+
+        public object AddDeliveryRegisterToDatabase(DeliveryRegister deliveryregister)
+        {
+            string queryString = "INSERT INTO delivery_register (delivery_login_id, delivery_pwd_hash,delivery_pwd_salt, delivery_user_firstname,delivery_user_lastname,delivery_user_address,delivery_user_city,delivery_user_province,delivery_user_postalcode,delivery_user_phoneno) VALUES ('"+deliveryregister.Delivery_Login_Id+"', '"+deliveryregister.Delivery_Pwd_Hash+"','"+deliveryregister.Delivery_Pwd_Salt+"', '"+deliveryregister.Delivery_User_Firstname+"','"+deliveryregister.Delivery_User_Lastname+"','"+deliveryregister.Delivery_User_Address+"','"+deliveryregister.Delivery_User_City+"','"+deliveryregister.Delivery_User_Province+"','"+deliveryregister.Delivery_User_Postalcode+"','"+deliveryregister.Delivery_User_Phoneno+"');";
+            using (IDbConnection connection = ConnectToDatabase())
+            {
+                DeliveryRegister[] deliveryinsert = connection.Query<DeliveryRegister>(queryString).ToArray();
+                return deliveryinsert;
+            }
+        }
+    
+
+    public AdminLoginDb GetLoginId()
         {
             using (IDbConnection connection = ConnectToDatabase())
             {

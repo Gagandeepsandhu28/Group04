@@ -1,0 +1,42 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Week3_FormCreation.Models.DeliveryLogin
+@{
+    ViewData["Title"] = "Delivery Login";
+    Layout = "~/Views/Shared/_LayoutDeliveryLoginRegister.cshtml";
+}
+
+<h1>Delivery Login</h1>
+<div class="panel-body">
+
+    @if (Model != null)
+    {
+
+        <div class="alert alert-dark" role="alert">
+            <b>@Model.deliveryMsg</b>
+        </div>
+
+
+    }
+    <fieldset>
+        @using (Html.BeginForm())
+        {
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(model => model.deliveryLoginId, "Login Id:", new { @id = "deliveryLoginId" })
+                    @Html.TextBoxFor(model => model.deliveryLoginId, new { @class = "form-control", @placeholder = "Login Id" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(model => model.deliveryLoginPwd, "Password", new { @id = "deliveryLoginPwd" })
+                    @Html.PasswordFor(model => model.deliveryLoginPwd, new { @class = "form-control", @placeholder = "Password" })
+                </div>
+            </div>
+            <br />
+            <button type="submit" class="btn btn-primary">Login</button>
+        }
+    </fieldset>
+</div>
+

@@ -1,0 +1,81 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Week3_FormCreation.Models.DeliveryRegister
+@{
+    ViewData["Title"] = "Delivery Register";
+    Layout = "~/Views/Shared/_LayoutDeliveryLoginRegister.cshtml";
+}
+<div class="panel panel-primary">
+    <h1>@ViewData["Title"]</h1>
+    <div class="panel-body">
+        @if (Model != null)
+        {
+            <div class="alert alert-success" role="alert">
+                <b>@Model.deliveryRegisterMsg</b>
+            </div>
+        }
+    <fieldset>
+        @using (Html.BeginForm())
+        {
+            <div class="form-row">
+                <div class="form-group col-sm-10">
+                    @Html.LabelFor(model => model.deliveryRegisterLoginEmailId, "Email:", new { @id = "deliveryRegisterLoginEmailId" })
+                    @Html.TextBoxFor(model => model.deliveryRegisterLoginEmailId, new { @class = "form-control", @placeholder = "Email", @type = "email" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10">
+                    @Html.LabelFor(model => model.deliveryRegisterLoginPwdFirst, "Password", new { @id = "deliveryRegisterLoginPwdFirst" })
+                    @Html.PasswordFor(model => model.deliveryRegisterLoginPwdFirst, new { @class = "form-control", @placeholder = "Password", @type = "password" })
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-sm-10">
+                    @Html.LabelFor(model => model.deliveryRegisterLoginPwdRepeat, "Repeat Password", new { @id = "deliveryRegisterLoginPwdRepeat" })
+                    @Html.PasswordFor(model => model.deliveryRegisterLoginPwdRepeat, new { @class = "form-control", @placeholder = "Repeat Password", @type = "password" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10">
+                    @Html.LabelFor(model => model.deliveryRegisterUserFirstName, "First Name", new { @id = "deliveryRegisterUserFirstName" })
+                    @Html.TextBoxFor(model => model.deliveryRegisterUserFirstName, new { @class = "form-control", @placeholder = "First Name" })
+                </div>
+                <div class="col-sm-10">
+                    @Html.LabelFor(model => model.deliveryRegisterUserLastName, "Last Name", new { @id = "deliveryRegisterUserLastName" })
+                    @Html.TextBoxFor(model => model.deliveryRegisterUserLastName, new { @class = "form-control", @placeholder = "Last Name" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    @Html.LabelFor(model => model.deliveryRegisterUserAddress, "Address", new { @id = "deliveryRegisterUserAddress" })
+                    @Html.TextBoxFor(model => model.deliveryRegisterUserAddress, new { @class = "form-control", @placeholder = "Address" })
+                </div>
+                <div class="col">
+                    @Html.LabelFor(model => model.deliveryRegisterUserCity, "City", new { @id = "deliveryRegisterUserCity" })
+                    @Html.TextBoxFor(model => model.deliveryRegisterUserCity, new { @class = "form-control", @placeholder = "City" })
+                </div>
+                <div class="col">
+                    @Html.LabelFor(model => model.deliveryRegisterUserProvince, "Province", new { @id = "deliveryRegisterUserProvince" })
+                    @Html.TextBoxFor(model => model.deliveryRegisterUserProvince, new { @class = "form-control", @placeholder = "Province" })
+                </div>
+
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    @Html.LabelFor(model => model.deliveryRegisterUserPostalCode, "Postal Code:", new { @id = "deliveryRegisterUserPostalCode" })
+                    @Html.TextBoxFor(model => model.deliveryRegisterUserPostalCode, new { @class = "form-control", @placeholder = "Postal Code" })
+                </div>
+
+                <div class="col">
+                    @Html.LabelFor(model => model.deliveryRegisterUserPhoneNo, "Phone:", new { @id = "deliveryRegisterUserPhoneNo" })
+                    @Html.TextBoxFor(model => model.deliveryRegisterUserPhoneNo, new { @class = "form-control", @placeholder = "Phone" })
+                </div>
+            </div>
+            <br />
+            <button type="submit" class="btn btn-primary">Register</button>
+        }
+    </fieldset>
+    </div>
+</div>

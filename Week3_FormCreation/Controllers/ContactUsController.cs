@@ -47,7 +47,7 @@ namespace Week3_FormCreation.Controllers
                 }
 
                 // ADD THE CONTACT CONTENT TO DB...
-                ContactUsHandler handler = new ContactUsHandler(_configuration);
+                ContactUsHandler handler = new ContactUsHandler();
                 var newcontactus = handler.AddContact(contact);
 
                 // SERVER COPY EMAIL
@@ -88,7 +88,7 @@ namespace Week3_FormCreation.Controllers
 
         public IActionResult Listing()
         {
-            ContactUsHandler handler = new ContactUsHandler(_configuration);
+            ContactUsHandler handler = new ContactUsHandler();
             var contacts = handler.GetAllContactUs();
             return View(contacts);
         }
