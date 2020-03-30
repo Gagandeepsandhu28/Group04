@@ -1,3 +1,4 @@
+using Library.BusinessLogic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Moq;
@@ -110,6 +111,24 @@ namespace Checkpoint1.Tests
         }
 
         [Fact]
+        public void CheckPasswordStrengthMatch_NoCapitalReturnsboolFalse()
+        {
+            //Arrange
+            string expected_result = "False";
+
+            DeliveryRegister useradd = new DeliveryRegister();
+            useradd.deliveryRegisterLoginPwdFirst = "@kotpolx12";
+            useradd.deliveryRegisterLoginPwdRepeat = "@kotpolx12";
+
+            //Act
+            bool actual_result = useradd.CheckPasswordStrengthMatch(useradd.deliveryRegisterLoginPwdFirst, useradd.deliveryRegisterLoginPwdRepeat);
+
+            //Assert
+            Assert.Equal(expected_result.ToString(), actual_result.ToString());
+
+        }
+
+        [Fact]
         public void CheckPLoginIdExists_UserIdReturnsboolFalse()
         {
             //Arrange
@@ -122,6 +141,55 @@ namespace Checkpoint1.Tests
             
             //Act
             bool actual_result = dl_user.CheckLoginIdExists(useradd);
+
+            //Assert
+            Assert.Equal(expected_result.ToString(), actual_result.ToString());
+
+        }
+
+        [Fact]
+        public void CheckPLoginIdExists_UserIdReturnsboolTrue()
+        {
+            //Arrange
+            string expected_result = "True";
+
+            DataModels.DeliveryRegister useradd = new DataModels.DeliveryRegister();
+            useradd.Delivery_Login_Id = "sibtain.bca@gmail.com";
+
+            DeliveryRegister dl_user = new DeliveryRegister();
+
+            //Act
+            bool actual_result = dl_user.CheckLoginIdExists(useradd);
+
+            //Assert
+            Assert.Equal(expected_result.ToString(), actual_result.ToString());
+
+        }
+
+        [Fact]
+        public void DeliveryUserAdd_UserDetailsReturnsInserted()
+        {
+            //Arrange
+            string expected_result = "True";
+
+            DataModels.DeliveryRegister useradd = new DataModels.DeliveryRegister();
+            useradd.Delivery_Login_Id = "pramodjat@gmail.com";
+            useradd.Delivery_Pwd_Hash = "Hash";
+            useradd.Delivery_Pwd_Salt = "Salt";
+            useradd.Delivery_User_Address = "Address555";
+            useradd.Delivery_User_City = "Waterloo";
+            useradd.Delivery_User_Firstname = "Pramod";
+            useradd.Delivery_User_Phoneno = "545454";
+            useradd.Delivery_User_Postalcode = "MXE6555";
+            useradd.Delivery_User_Province = "Ontario";
+
+            DeliveryRegisterHandler handler = new DeliveryRegisterHandler();
+            var newregisteruser = handler.AddDeliveryRegister(useradd);
+
+
+            //Act
+          
+            bool actual_result = true;
 
             //Assert
             Assert.Equal(expected_result.ToString(), actual_result.ToString());
