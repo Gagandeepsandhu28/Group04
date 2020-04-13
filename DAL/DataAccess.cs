@@ -85,6 +85,17 @@ namespace DAL
             }
         }
 
+        public StoresList[] GetAllStoreListFromDatabase()
+        {
+            using (IDbConnection connection = ConnectToDatabase())
+            {
+                StoresList[] storelist = connection.Query<StoresList>("select * from pizza_store order by store_id asc").ToArray();
+
+                return storelist;
+            }
+        }
+
+
         public object AddContactUsToDatabase(ContactUs newContactUs)
         {
             string queryString = "INSERT INTO ContactUs (ContactName, ContactSubject, ContactEmail, ContactMessage) VALUES ( '" + newContactUs.ContactName + "', '" + newContactUs.ContactSubject + "', '" + newContactUs.ContactEmail + "', '" + newContactUs.ContactMessage + "');";

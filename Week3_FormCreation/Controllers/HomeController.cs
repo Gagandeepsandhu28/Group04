@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Library.BusinessLogic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Week3_FormCreation.Models;
@@ -20,7 +21,9 @@ namespace Week3_FormCreation.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            StoreListHandler handler = new StoreListHandler();
+            var storelist = handler.GetAllStoreList();
+            return View(storelist); 
         }
 
         public IActionResult Privacy()

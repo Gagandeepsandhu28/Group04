@@ -1,8 +1,27 @@
-﻿@{
+﻿@model IEnumerable<DataModels.StoresList>
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to Pizza Dots</h1>
-    
-</div>
+
+    <div class="text-center">
+        <h1 class="display-4">Welcome to Pizza Dots</h1>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+            <div class="col-sm-4">
+                <div class="card-deck" style="margin-bottom:20px">
+                    <div class="card">
+                        <center><img class="card-img-top" style="height:100px;width:200px;margin-top:10px" src="~/images/@item.Store_Image" alt=""></center>
+
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Store_Name</h5>
+                            <p class="card-text">@item.Store_Delivery_Time</p>
+                   
+                        </div>
+                    </div>
+                </div>
+                </div>
+                }
+            </div>
+    </div>

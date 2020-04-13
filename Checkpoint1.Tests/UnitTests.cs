@@ -333,10 +333,6 @@ namespace Checkpoint1.Tests
 
         }
 
-
-
-
-
     }
 
 }
