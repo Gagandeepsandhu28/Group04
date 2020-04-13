@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<DataModels.StoreMenu>
 @{
-    ViewData["Title"] = Model.ElementAtOrDefault(0).Store_Name;
+    ViewData["Title"] = @Model.ElementAtOrDefault(0).Store_Name;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
