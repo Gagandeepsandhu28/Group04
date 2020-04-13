@@ -95,6 +95,16 @@ namespace DAL
             }
         }
 
+        public StoreMenu[] GetStoreMenuFromDatabase(int StoreId)
+        {
+            using (IDbConnection connection = ConnectToDatabase())
+            {
+                StoreMenu[] storemenu = connection.Query<StoreMenu>("SELECT dbo.pizza_store.store_name,dbo.pizza_store.store_image,dbo.pizza_store.store_delivery_time,dbo.pizza_store_menu.* FROM dbo.pizza_store INNER JOIN dbo.pizza_store_menu ON dbo.pizza_store.store_id = dbo.pizza_store_menu.pizza_store_id WHERE pizza_store_menu.pizza_store_id = "+StoreId+" ORDER BY pizza_store_menu.pizza_menu_id; ").ToArray();
+
+                return storemenu;
+            }
+        }
+
 
         public object AddContactUsToDatabase(ContactUs newContactUs)
         {

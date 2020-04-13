@@ -7,7 +7,7 @@ namespace Week3_FormCreation.Models
 {
     public class Home
     {
-        public string StoreId { get; set; }
+        public int StoreId { get; set; }
         public string StoreName { get; set; }
         public string StoreImage { get; set; }
         public string StoreDeliveryTime { get; set; }

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<DataModels.StoreMenu>
+@{
+    ViewData["Title"] = Model.ElementAtOrDefault(0).Store_Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="text-center">
+        @for (int i = 0; i < 1; i++)
+        {
+       
+            <div class="card" style="margin-bottom:20px">
+                <center><img class="card-img-top" style="height:100px;width:200px;margin-top:10px" src="~/images/@Model.ElementAtOrDefault(i).Store_Image" alt=""></center>
+
+                <div class="card-body">
+                 <p class="card-text">@Model.ElementAtOrDefault(i).Store_Delivery_Time</p>
+
+                </div>
+            </div>
+            
+
+        }
+
+        <div class="row">
+            @foreach (var item in Model)
+            {
+
+                <div class="col-sm-4">
+                    <div class="card-deck" style="margin-bottom:20px">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">@item.Pizza_Menu</h5>
+                                <p class="card-text">@item.Pizza_Menu_Description</p>
+                                <p class="card-text"><b>@item.Pizza_Menu_Price</b></p>
+                                <a href="#" class="btn btn-primary">Add To Cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
