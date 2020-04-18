@@ -15,5 +15,11 @@ namespace Library.BusinessLogic
             var stormenu = db.GetStoreMenuFromDatabase(StoreId);
             return stormenu;
         }
+        public StoreMenu[] GetStoreItemDetails(int StoreId, int MenuId)
+        {
+            DataAccess db = new DataAccess();
+            var itemdetails = db.GetMenuItemDetailsFromDb(StoreId,MenuId);
+            return itemdetails;
+        }
     }
 }

@@ -105,6 +105,27 @@ namespace DAL
             }
         }
 
+        public StoreMenu[] GetMenuItemDetailsFromDb(int storeid,int menuid)
+        {
+            using (IDbConnection connection = ConnectToDatabase())
+            {
+                StoreMenu[] menuitemdetails = connection.Query<StoreMenu>("SELECT * FROM pizza_store_menu WHERE pizza_store_id="+storeid+" AND pizza_menu_id="+menuid+" ").ToArray();
+
+                return menuitemdetails;
+            }
+        }
+
+        public Cart[] GetIteminCartDb(string cart_session_id, int storeid, int menuid)
+        {
+            using (IDbConnection connection = ConnectToDatabase())
+            {
+                Cart[] getitemincart = connection.Query<Cart>("SELECT * FROM pizza_cart WHERE cart_session_id='" + cart_session_id + "' AND cart_menu_id=" + menuid + " AND cart_store_id='"+storeid+"' ").ToArray();
+
+                return getitemincart;
+            }
+        }
+
+
 
         public object AddContactUsToDatabase(ContactUs newContactUs)
         {
