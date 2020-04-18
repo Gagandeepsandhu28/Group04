@@ -15,5 +15,31 @@ namespace Library.BusinessLogic
             var getitemincart = db.GetIteminCartDb(Cart_Session_Id,StoreId, MenuId);
             return getitemincart;
         }
+        public Cart[] UpdateCartItemQty(Cart cartitem)
+        {
+            DataAccess db = new DataAccess();
+            var updateitemincart = db.UpdateIteminCartDb(cartitem);
+            return updateitemincart;
+        }
+        public Cart[] InsertCartItem(Cart cartitem)
+        {
+            DataAccess db = new DataAccess();
+            var insertcartitm = db.InsertCartItemDb(cartitem);
+            return insertcartitm;
+        }
+
+        public Cart[] ViewCartItems(string  cart_session_id)
+        {
+            DataAccess db = new DataAccess();
+            var getcart_items = db.GetAllItemsInCartDb(cart_session_id);
+            return getcart_items;
+        }
+
+        public Cart[] GetCartSubTotal(string cart_session_id)
+        {
+            DataAccess db = new DataAccess();
+            var getcartsub_tot = db.GetCartSubTotal(cart_session_id);
+            return getcartsub_tot;
+        }
     }
 }

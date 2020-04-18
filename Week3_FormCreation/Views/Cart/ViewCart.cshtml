@@ -1,0 +1,56 @@
+﻿@model IEnumerable<DataModels.Cart>
+@{
+    ViewData["Title"] = "View Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>View Cart</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Menu Item
+            </th>
+            <th>
+               Price
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cart_menu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cart_menu_price)
+            </tr>
+        }
+        <tr>
+            <td>
+                <b>SubTotal:</b>
+            </td>
+            <td>
+                @Model.ElementAtOrDefault(0).Cart_Sub_Total
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>Service Tax:</b>
+            </td>
+            <td>
+                @Model.ElementAtOrDefault(0).Cart_Total_Tax
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>Total:</b>
+            </td>
+            <td>
+                @Model.ElementAtOrDefault(0).Cart_Total
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+

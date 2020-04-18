@@ -1,0 +1,14 @@
+﻿@model IEnumerable<DataModels.StoreMenu>
+@{
+    ViewData["Title"] = "Item Added Succesfully to The Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Item Added Succesfully to The Cart</h1>
+@foreach (var item in Model)
+{
+    <a href="../StoreMenu?StoreId=@item.Pizza_Store_Id" class="btn btn-primary">Continue Shopping</a>
+    <a href="/Cart/ViewCart" class="btn btn-primary">Checkout</a>
+}
+
+
