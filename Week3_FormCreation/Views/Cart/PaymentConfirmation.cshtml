@@ -1,0 +1,13 @@
+﻿@using Microsoft.AspNetCore.Http;
+@model Week3_FormCreation.Models.Payment
+@{
+    ViewData["Title"] = "PaymentConfirmation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>
+    Payment Confirmation: Succesful
+</h1>
+<h3>Thank you for the order!</h3>
+<h3>Your Order No:@Context.Session.GetString("OrderId") is being under process and delivery will be made soon!</h3>
+

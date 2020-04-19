@@ -1,0 +1,35 @@
+﻿@using Microsoft.AspNetCore.Http;
+@model Week3_FormCreation.Models.Payment
+@{
+
+    ViewData["Title"] = "Payment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Payment Gateway (Order id):@Context.Session.GetString("CartSessionId")</h2>
+<h3>Payment Amount: $@Context.Session.GetString("CartTotal")</h3>
+<fieldset>
+    @using (Html.BeginForm())
+    {
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.CreditCardNo, "CreditCard Number:", new { @id = "creditcardno" })
+                @Html.TextBoxFor(model => model.CreditCardNo, new { @class = "form-control", @placeholder = "Enter Credit Card No" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.CVV, "CVV:", new { @id = "creditcardcvv" })
+                @Html.PasswordFor(model => model.CVV, new { @class = "form-control", @placeholder = "CVV" })
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.CardHolderName, "Card Owner Name:", new { @id = "creditcardowner" })
+                @Html.TextBoxFor(model => model.CardHolderName, new { @class = "form-control", @placeholder = "Enter Credit Card Holder Name" })
+            </div>
+        </div>
+
+        <br />
+        <button type="submit" class="btn btn-primary">Payment</button>
+    }
+</fieldset>

@@ -4,13 +4,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using DataModels;
 using Library.BusinessLogic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Week3_FormCreation.Models;
 
 namespace Week3_FormCreation.Controllers
 {
     public class CartController : Controller
     {
+        
         public IActionResult Index()
         {
             return View();
@@ -71,14 +74,19 @@ namespace Week3_FormCreation.Controllers
         {
             // CHECK CART SESSIONID VARIABLE.
             var var_chk_session = HttpContext.Session.GetString("CartSessionId");
+            var var_chk_cart_empty = HttpContext.Session.GetString("CartSessionEmpty");
             if (var_chk_session is null)
             {
-                return View();
+                return RedirectToAction("Index");
             }
 
             // GET THE ITEM DETAILS FROM DB FOR THE CART
            CartHandler handler = new CartHandler();
            var getallitemsincart = handler.ViewCartItems(HttpContext.Session.GetString("CartSessionId").ToString());
+            if(getallitemsincart is null)
+            {
+                return RedirectToAction("Index");
+            }
             // GET TOTAL OF CART ITEMS
             var getcarttotal = handler.GetCartSubTotal(HttpContext.Session.GetString("CartSessionId").ToString());
             // SET TOTAL IN [getallitemsincart] object for VIEW
@@ -88,7 +96,10 @@ namespace Week3_FormCreation.Controllers
                 item.Cart_Sub_Total = getcarttotal[0].Cart_Sub_Total;
                 item.Cart_Total_Tax = (getcarttotal[0].Cart_Sub_Total * 13) / 100;
             }
-           return View(getallitemsincart);
+
+            // SET THE TOTAL IN THE SESSION VARIABLE FOR PAYMENT....
+            HttpContext.Session.SetString("CartTotal", (getcarttotal[0].Cart_Sub_Total + (getcarttotal[0].Cart_Sub_Total * 13) / 100).ToString("0.00"));
+            return View(getallitemsincart);
         }
 
         public IActionResult EmptyCart()
@@ -105,6 +116,38 @@ namespace Week3_FormCreation.Controllers
             var emptycart = handler.EmptyCart(HttpContext.Session.GetString("CartSessionId").ToString());
             
             return View();
+        }
+
+        [Authorize]
+        public IActionResult Payment()
+        {
+            // CHECK CART SESSIONID VARIABLE.
+            var var_chk_session = HttpContext.Session.GetString("CartSessionId");
+            var var_chk_cart_total = HttpContext.Session.GetString("CartTotal");
+            if ((var_chk_session is null) || (var_chk_cart_total is null))
+            {
+                return RedirectToAction("Index");
+
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Payment(Payment payment)
+        {
+            // CHECK CART SESSIONID VARIABLE.
+            var var_chk_session = HttpContext.Session.GetString("CartSessionId");
+            var var_chk_cart_total = HttpContext.Session.GetString("CartTotal");
+            if ((var_chk_session is null) || (var_chk_cart_total is null))
+            {
+                return RedirectToAction("Index");
+
+            }
+            CartHandler handler = new CartHandler();
+            var emptycart = handler.EmptyCart(HttpContext.Session.GetString("CartSessionId").ToString());
+            HttpContext.Session.SetString("OrderId", HttpContext.Session.GetString("CartSessionId").ToString());
+            HttpContext.Session.Remove("CartSessionId");
+            return View("PaymentConfirmation");
         }
     }
 
