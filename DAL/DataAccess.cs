@@ -156,6 +156,16 @@ namespace DAL
             }
         }
 
+        public Cart[] EmptyCart(string cart_session_id)
+        {
+            string queryString = "DELETE FROM pizza_cart WHERE cart_session_id='"+cart_session_id+"'";
+            using (IDbConnection connection = ConnectToDatabase())
+            {
+                Cart[] deletecartentries = connection.Query<Cart>(queryString).ToArray();
+                return deletecartentries;
+            }
+        }
+
 
 
 

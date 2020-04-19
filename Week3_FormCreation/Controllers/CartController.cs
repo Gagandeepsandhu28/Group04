@@ -90,5 +90,22 @@ namespace Week3_FormCreation.Controllers
             }
            return View(getallitemsincart);
         }
+
+        public IActionResult EmptyCart()
+        {
+            // CHECK CART SESSIONID VARIABLE.
+            var var_chk_session = HttpContext.Session.GetString("CartSessionId");
+            if (var_chk_session is null)
+            {
+                return View();
+            }
+
+            // GET THE ITEM DETAILS FROM DB FOR THE CART
+            CartHandler handler = new CartHandler();
+            var emptycart = handler.EmptyCart(HttpContext.Session.GetString("CartSessionId").ToString());
+            
+            return View();
+        }
     }
+
 }

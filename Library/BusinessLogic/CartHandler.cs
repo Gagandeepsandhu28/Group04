@@ -41,5 +41,12 @@ namespace Library.BusinessLogic
             var getcartsub_tot = db.GetCartSubTotal(cart_session_id);
             return getcartsub_tot;
         }
+
+        public Cart[] EmptyCart(string cart_session_id)
+        {
+            DataAccess db = new DataAccess();
+            var dbcartempty = db.EmptyCart(cart_session_id);
+            return dbcartempty;
+        }
     }
 }

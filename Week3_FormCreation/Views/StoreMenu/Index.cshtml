@@ -30,7 +30,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">@item.Pizza_Menu</h5>
                                 <p class="card-text">@item.Pizza_Menu_Description</p>
-                                <p class="card-text"><b>@item.Pizza_Menu_Price</b></p>
+                                <p class="card-text"><b>$@item.Pizza_Menu_Price.ToString("0.00")</b></p>
                                 <a href="Cart/Add?MenuId=@item.Pizza_Menu_Id&StoreId=@item.Pizza_Store_Id" class="btn btn-primary">Add To Cart</a>
                             </div>
                         </div>
